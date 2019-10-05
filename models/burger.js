@@ -1,7 +1,9 @@
 var orm = require("../config/orm");
 
 var burger = {
-    selectAll: orm.selectAll,
+    selectAll: function (bool) {
+        orm.selectAll(bool);
+    },
 
     insertOne: function (burger) {
         orm.insertOne(burger);

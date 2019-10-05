@@ -1,7 +1,7 @@
 var connection = require("./connection");
 
-function selectAll() {
-    connection.query("SELECT * FROM burgers", function (err, data) {
+function selectAll(bool) {
+    connection.query("SELECT * FROM burgers where devoured= ? order by id", bool ,function (err, data) {
         if (err) {
             return false;
         }

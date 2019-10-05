@@ -2,18 +2,19 @@ var burger = require("../models/burger");
 
 module.exports = function (app) {
 
-    app.get("/index", function (res) {
-        var data = burger.selectAll();
+    app.get("/", function (res) {
+        var nonDevouredBurgers = burger.selectAll(false);
+        var devouredBurgers = burger.selectAll(true);
 
-        if (data) {
-            res.render("index", { burgers: data });
+        if (nonDevouredBurgers && devouredBurgers) {
+            res.render("index", { nonDevouredBurgers: nonDevouredBurgers, devouredBurgers: devouredBurgers });
         } else {
             res.status(500).end();
         }
     });
 
 
-    app.post("/index", function (req, res) {
+    app.post("/api/burgers", function (req, res) {
         var result = burger.insertOne(req.body.burger);
 
         if (result) {
@@ -24,7 +25,7 @@ module.exports = function (app) {
     });
 
 
-    app.put("/index/:id", function (req, res) {
+    app.put("/api/burgers/:id", function (req, res) {
         var result = burger.updateOne(req.params.id);
 
         if (result === 500) {
