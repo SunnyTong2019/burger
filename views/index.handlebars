@@ -2,13 +2,13 @@
 
 <h1>Eat-Da-Burger!</h1>
 
-<div id="all">
+<div id="allBurgers">
 
     <div id="nonDevoured">
         <ul>
             {{#each burgers}}
             {{#unless devoured}}
-            <div class="oneBurger">
+            <div class="newBurger">
                 {{this.id}}. {{this.burger_name}}
                 <button data-burgerid="{{this.id}}" class="devourBurger">Devour It !</button>
             </div>
@@ -26,7 +26,9 @@
             {{/each}}
         </ul>
     </div>
+
 </div>
+
 <form id="addBurger" class="button-size">
     <textarea type="text" name="burger"></textarea>
     <br>
