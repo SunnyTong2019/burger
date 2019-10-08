@@ -1,16 +1,23 @@
 var orm = require("../config/orm");
 
 var burger = {
-    selectAll: function (bool) {
-        orm.selectAll(bool);
+    selectAll: function (cb) {
+        orm.selectAll("burgers", function(result) {
+            cb(result);
+        });
     },
 
-    insertOne: function (burger) {
-        orm.insertOne(burger);
+    insertOne: function (userBurger, cb) {
+        orm.insertOne("burgers","burger_name", user
+        , function(result) {
+            cb(result);
+        });
     },
 
-    updateOne: function (id) {
-        orm.updateOne(id);
+    updateOne: function (burgerID, cb) {
+        orm.updateOne("burgers", "devoured", true, burgerID, function(result) {
+            cb(result);
+        });
     }
 };
 

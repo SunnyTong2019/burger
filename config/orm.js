@@ -1,36 +1,28 @@
 var connection = require("./connection");
 
-function selectAll(bool) {
-    connection.query("SELECT * FROM burgers where devoured= ? order by id", bool ,function (err, data) {
-        if (err) {
-            return false;
-        }
-        return data;
-    });
-};
+var orm = {
+    selectAll: function (table, cb) {
+        connection.query("SELECT * FROM ??", table, function (err, result) {
+            if (err) { throw err; }
+            cb(result);
+        });
+    },
 
-function insertOne(burger) {
-    connection.query("INSERT INTO burgers (burger_name) VALUES (?)", burger, function (err, result) {
-        if (err) {
-            return false;
-        }
-        return result;
-
-    });
-};
+    insertOne: function (table, colName, colValue, cb) {
+        connection.query("INSERT INTO ?? (??) VALUES (?)", [table, colName, colValue], function (err, result) {
+            if (err) { throw err; }
+            cb(result);
+        });
+    },
 
 
-function updateOne(id) {
-    connection.query("UPDATE burgers SET devoured = true WHERE id = ?", id, function (err) {
-        if (err) {
-            console.log(err);
-            return 500;
-        } else if (result.changedRows === 0) {
-            return 404;
-        }
-        return 200;
-    });
-};
+    updateOne: function (table, colName, colValue, id, cb) {
+        connection.query("UPDATE ?? SET ?? = ? WHERE id = ?", [table, colName, colValue, id], function (err, result) {
+            if (err) { throw err; }
+            cb(result);
+        });
+    }
 
-module.exports = { selectAll, insertOne, updateOne };
+}
+module.exports = orm;
 
