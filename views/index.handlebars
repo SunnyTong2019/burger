@@ -1,22 +1,21 @@
 <h1>Eat-Da-Burger!</h1>
 
 <ul>
-  {{#each burgers}}
+    {{#each burgers}}
     {{#unless devoured}}
     <p>{{this.id}}. {{this.burger_name}}</p>
-      <button data-burgerId="{{id}}" class="devourBurger">Devour It!</button>
+    <button data-burgerid="{{this.id}}" class="devourBurger">Devour It!</button>
     {{/unless}}
-  {{/each}}
+    {{/each}}
 </ul>
 
 <ul>
-  {{#each burgers}}
+    {{#each burgers}}
     {{#if devoured}}
-      <p>{{this.id}}. {{this.burger_name}}</p>
+    <p>{{this.id}}. {{this.burger_name}}</p>
     {{/if}}
-  {{/each}}
+    {{/each}}
 </ul>
-
 
 <form id="addBurger" class="button-size">
     <textarea type="text" name="burger"></textarea>
@@ -43,9 +42,10 @@
         );
     });
 
+
     $(".devourBurger").on("click", function (event) {
 
-        var id = $(this).data("burgerId");
+        var id = $(this).data("burgerid");
 
         $.ajax("/api/burgers/" + id, {
             type: "PUT"

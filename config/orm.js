@@ -15,14 +15,13 @@ var orm = {
         });
     },
 
-
     updateOne: function (table, colName, colValue, id, cb) {
         connection.query("UPDATE ?? SET ?? = ? WHERE id = ?", [table, colName, colValue, id], function (err, result) {
             if (err) { throw err; }
             cb(result);
         });
     }
-
 }
+
 module.exports = orm;
 
