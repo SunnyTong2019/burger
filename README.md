@@ -13,7 +13,7 @@ It is created using Node.js with homemade ORM and below npm packages:
 
 
 ## Deployed Link
-
+https://sleepy-thicket-74635.herokuapp.com/
 
 
 ## Contributor
